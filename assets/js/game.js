@@ -10,6 +10,7 @@ for(var i = 0; i < enemyNames.length; i++) {
     console.log(i);
     console.log(enemyNames[i] + " is at " + i + " index");
   }
+  
 
 // Game States
 // "WIN" - Player robot has defeated all enemy-robots
@@ -17,9 +18,9 @@ for(var i = 0; i < enemyNames.length; i++) {
 //    * Defeat each enemy-robot
 // "LOSE" - Player robot's health is zero or less
 
-var fight = function(enemyName) {
-    // Alert players that they are starting the round
-    window.alert("Welcome to Robot Gladiators!");
+    var fight = function(enemyName) {
+        // repeat and execute as long as the enemy-robot is alive 
+     while(enemyHealth > 0){
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
   
 // if player choses to fight, then fight
@@ -47,11 +48,13 @@ var fight = function(enemyName) {
     // check player's health
     if (playerHealth <= 0) {
       window.alert(playerName + " has died!");
-    } else {
+      break;
+    } 
+    else {
       window.alert(playerName + " still has " + playerHealth + " health left.");
     }
     // if player choses to skip
-} else if (promptFight === "skip" || promptFight === "SKIP") {
+    } else if (promptFight === "skip" || promptFight === "SKIP") {
         // confirm player wants to skip
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
       
@@ -66,8 +69,12 @@ var fight = function(enemyName) {
           fight();
         }
     }
+    }
+};
+for (var i = 0; i < enemyNames.length; i++) {
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    fight(pickedEnemyName);
 }
-for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
-  }
+fight();
     
